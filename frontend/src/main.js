@@ -1,7 +1,7 @@
-let currentScore = 0;  // Tracks the current score of the player.
-let currentPlayerName = '';  // Holds the name of the player.
+let currentScore = 0;  
+let currentPlayerName = '';  
 
-// Initiates the game by displaying the game area if a name is provided.
+
 function startGame() {
     currentPlayerName = document.getElementById('playerName').value;
     
@@ -19,11 +19,11 @@ function playRound(playerChoice) {
     const choices = ['sten', 'sax', 'påse'];
     const computerChoice = choices[Math.floor(Math.random() * 3)];  // Randomly selects computer's choice.
     
-    // Display player's and computer's choices.
+    // showing player's and computer's choices.
     document.getElementById('playerChoice').textContent = playerChoice;
     document.getElementById('computerChoice').textContent = computerChoice;
 
-    // Determine the winner of the round.
+    // Who is the winner of the round.
     if (playerChoice === computerChoice) {
         document.getElementById('winner').textContent = 'Oavgjort!';
     } else if (
@@ -36,7 +36,7 @@ function playRound(playerChoice) {
     } else {
         document.getElementById('winner').textContent = 'Datorn vann!';
         if (currentScore > 0) {
-            // Update highscore if a new record is achieved.
+            // Update highscore when there is a new champ.
             fetch('http://localhost:3000/highscores', {
                 method: 'POST',
                 headers: {
@@ -55,7 +55,7 @@ function playRound(playerChoice) {
 
 window.playRound = playRound;
 
-// Fetches and displays the highscore list from the server.
+// Fetchs and displays the highscore list from the server.
 function GetHighscores() {
     fetch('http://localhost:3000/highscores')
         .then(response => response.json())
@@ -70,5 +70,5 @@ function GetHighscores() {
         });
 }
 
-// Load highscores when the page is loaded.
+// Load highscores
 GetHighscores();
